@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <date>2023-03-20T19:15:52Z</date>
+    <groups>
+        <group>
+            <uuid>57b7ae836ca64446ba2c286389c009b7</uuid>
+            <name>Modelos ZABBIX</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>bd26c77a8aa14b7c820b9dafb5cdc476</uuid>
+            <template>OLT Parks Fiberlink 30028 - 8 Portas</template>
+            <name>OLT Parks Fiberlink 30028 - 8 Portas</name>
+            <templates>
+                <template>
+                    <name>Generico SNMP - Ze</name>
+                </template>
+                <template>
+                    <name>Interface Simple by SNMP - Ze</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>Modelos ZABBIX</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>bbca605857414f61ad350639e9ff92be</uuid>
+                    <name>Stress do Processador</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.4.4.1.6.0</snmp_oid>
+                    <key>CpuBusClk</key>
+                    <delay>86400s</delay>
+                    <history>15d</history>
+                    <trends>90d</trends>
+                    <units>MHz</units>
+                    <description>O &quot;Cpu Bus Clock&quot; ou &quot;Clock do Barramento da CPU&quot; se refere à frequência de operação do barramento (ou &quot;bus&quot;) que conecta a CPU (unidade central de processamento) aos demais componentes do computador, como a memória RAM e os dispositivos de entrada e saída.
+
+Essa frequência é medida em Hertz (Hz) e indica quantas operações de leitura e escrita podem ser realizadas pelo barramento em um segundo. Uma frequência maior indica uma maior velocidade de transferência de dados entre a CPU e os demais componentes, o que pode resultar em melhor desempenho do computador.</description>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>6a861407ec244486805226333f857f93</uuid>
+                    <name>Frequência da CPU</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.4.4.1.5.0</snmp_oid>
+                    <key>CpuCoreClk</key>
+                    <delay>86400s</delay>
+                    <history>15d</history>
+                    <trends>90d</trends>
+                    <units>MHz</units>
+                    <description>&quot;Cpu Core Clock&quot; pode ser traduzido para o português como &quot;Clock do Núcleo da CPU&quot;. Essa é a frequência de operação do relógio interno da CPU, que é responsável por controlar as operações dos núcleos (cores) do processador.
+
+Cada núcleo de processamento da CPU executa operações em sequência, ou seja, uma após a outra. O &quot;Cpu Core Clock&quot; define a frequência máxima na qual essas operações são realizadas, em ciclos de clock por segundo (Hertz).
+
+Assim, quanto maior a frequência do &quot;Cpu Core Clock&quot;, maior será a quantidade de instruções que cada núcleo da CPU poderá executar em um determinado intervalo de tempo, o que geralmente resulta em um melhor desempenho do processador em tarefas que exigem muito processamento, como jogos, edição de vídeo ou renderização de imagens. No entanto, é importante lembrar que o aumento da frequência do &quot;Cpu Core Clock&quot; também pode aumentar o consumo de energia e gerar mais calor, o que pode limitar a sua capacidade de overclocking (aumento da frequência além dos limites especificados pelo fabricante).</description>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>6bba98ca5e6a4b8e8df2e9a1c0bd4ee7</uuid>
+                    <name>CPU ociosa</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.4.4.1.1.0</snmp_oid>
+                    <key>CpuIdle</key>
+                    <delay>30s</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>f38f9c153b1342bf81604b423df843d3</uuid>
+                    <name>Cpu Machine</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.4.4.1.4.0</snmp_oid>
+                    <key>CpuMachine</key>
+                    <delay>86400s</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Cpu</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>4b989fbc38a54e9989980c6c81e69408</uuid>
+                    <name>CPU do Sistema</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.4.4.1.2.0</snmp_oid>
+                    <key>CpuSystem</key>
+                    <delay>60s</delay>
+                    <history>15d</history>
+                    <trends>90d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Cpu</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>ebaee50276ee4613a1ca00f87bec0311</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/CpuSystem)&gt;=55 and last(/OLT Parks Fiberlink 30028 - 8 Portas/CpuSystem)&lt;80</expression>
+                            <name>Cpu &gt;= 55%</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>af8e8e95fb9b496582bcfaecff2d45de</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/CpuSystem)&gt;=80</expression>
+                            <name>Cpu &gt;= 80%</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>b3b4b7d032364a3880cd91256361e348</uuid>
+                    <name>Status da Fonte de Energia 1</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.2.1.2.1.10.2</snmp_oid>
+                    <key>EquipmentDataBoardStatus.0</key>
+                    <delay>300s</delay>
+                    <history>15d</history>
+                    <trends>90d</trends>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Hardware</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>98f858e170ae47b486c2527917f6728e</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/EquipmentDataBoardStatus.0)=3</expression>
+                            <name>Fonte de alimentação 1 desconectada</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>630f176256584670b57c255df0193e58</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/EquipmentDataBoardStatus.0)=2</expression>
+                            <name>Fonte de alimentação 1 OFF</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>c84ddd3737ff4b3c87cdf1b4357d99e3</uuid>
+                    <name>Status da Fonte de Energia 2</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.2.1.2.1.10.3</snmp_oid>
+                    <key>EquipmentDataBoardStatus.1</key>
+                    <delay>300s</delay>
+                    <history>15d</history>
+                    <trends>90d</trends>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Hardware</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>63087a1a328b46ebbc6006da4c758a8b</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/EquipmentDataBoardStatus.1)=3</expression>
+                            <name>Fonte de alimentação 2 desconectada</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>c1d940de16ed4155831f52cf030ccd18</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/EquipmentDataBoardStatus.1)=2</expression>
+                            <name>Fonte de alimentação 2 OFF</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>054866ba26b74c9a8c5e1811dd18e1e8</uuid>
+                    <name>Memoria Livre</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.4.4.2.2.0</snmp_oid>
+                    <key>MemoryFree</key>
+                    <delay>60s</delay>
+                    <history>30d</history>
+                    <trends>60d</trends>
+                    <units>B</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>1024</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>8e05c00b8c0a464d8d212d8f4f4c6864</uuid>
+                    <name>Memoria total</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.4.4.2.1.0</snmp_oid>
+                    <key>MemoryTotal</key>
+                    <delay>7200s</delay>
+                    <history>30d</history>
+                    <trends>60d</trends>
+                    <units>B</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>1024</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>bfc8041698c14ed48c72869b065ef74a</uuid>
+                    <name>Memoria em Uso</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.4.4.2.3.0</snmp_oid>
+                    <key>MemoryUsed</key>
+                    <delay>60s</delay>
+                    <history>30d</history>
+                    <trends>60d</trends>
+                    <units>B</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>1024</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Memory</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>cee60e091ae947d19a784ee27839cd97</uuid>
+                    <name>Unidade Interna de Temperatura 1</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.27.1.1.3.2</snmp_oid>
+                    <key>pkintunitTemperature</key>
+                    <delay>900s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>7f21f23aa8494f778aa5e4cd248d60b5</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/pkintunitTemperature)&gt;60</expression>
+                            <name>Alta Temperatura na unidade 1</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>9d5a1ec9972c4e7d8222f71c8660477d</uuid>
+                    <name>Unidade Interna de Temperatura 2</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.27.1.1.3.3</snmp_oid>
+                    <key>pkintunitTemperature_2</key>
+                    <delay>900s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>cb4ce26dc73b4db79b35a7305d59c201</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/pkintunitTemperature_2)&gt;60</expression>
+                            <name>Alta Temperatura na unidade 2</name>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>f3218c846baf45a1944a23e18349d29f</uuid>
+                    <name>Temperatura da fonte de alimentação</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.27.1.1.3.1</snmp_oid>
+                    <key>pkpwsuplyTemperature</key>
+                    <delay>900s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>2aa82d66439f4d129a6a77bd40d77ac9</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/pkpwsuplyTemperature)&gt;60</expression>
+                            <name>Alta temperatura na fonte de alimentação</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>c6c888470abe4aa3b2ca9dd2bc32e26b</uuid>
+                    <name>Fan 1 Duty Cycle</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.32.1.1.3.5</snmp_oid>
+                    <key>pkSensorValue_1</key>
+                    <delay>300s</delay>
+                    <units>%</units>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>c434c0ad9b8c40babcdf2a3545c239f3</uuid>
+                    <name>Fan 2 Duty Cycle</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.32.1.1.3.6</snmp_oid>
+                    <key>pkSensorValue_2</key>
+                    <delay>300s</delay>
+                    <units>%</units>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3d007af67f054c9a855b4376b6fdd663</uuid>
+                    <name>Fan 3 Duty Cycle</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.32.1.1.3.7</snmp_oid>
+                    <key>pkSensorValue_3</key>
+                    <delay>300s</delay>
+                    <units>%</units>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>ae1cb26cd1934bf7b857b7f95076b9e6</uuid>
+                    <name>Presença do Módulo FAN</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.32.1.1.3.4</snmp_oid>
+                    <key>pkSensorValue_4</key>
+                    <delay>300s</delay>
+                    <valuemap>
+                        <name>Module Status</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>1f5b8dc748e94a2bb4270421bfe18075</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/pkSensorValue_4)=2</expression>
+                            <name>Alarme no modulo de FAN</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>ccc19b08495d4ded98efdb8bfd25e4a1</uuid>
+                            <expression>last(/OLT Parks Fiberlink 30028 - 8 Portas/pkSensorValue_4)=3</expression>
+                            <name>Módulo FAN Não Presente</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>3009318acbd34b938cdd309d2e4285e9</uuid>
+                    <name>Temperatura SFP Gpon 1/1</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.21.1.1.1.14.4</snmp_oid>
+                    <key>pkSfpDiagTemperature_1</key>
+                    <delay>1800s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>6b8e396883404162a39a8d2977489639</uuid>
+                    <name>Temperatura SFP Gpon 1/2</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.21.1.1.1.14.5</snmp_oid>
+                    <key>pkSfpDiagTemperature_2</key>
+                    <delay>1800s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>b2a067c1b5a94214b69365b9c87da9d1</uuid>
+                    <name>Temperatura SFP Gpon 1/3</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.21.1.1.1.14.6</snmp_oid>
+                    <key>pkSfpDiagTemperature_3</key>
+                    <delay>1800s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>7706be2c048b4a59b2b25eff136fe0e2</uuid>
+                    <name>Temperatura SFP Gpon 1/4</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.21.1.1.1.14.7</snmp_oid>
+                    <key>pkSfpDiagTemperature_4</key>
+                    <delay>1800s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>1afb0efc8f284d6396eecb43c015fded</uuid>
+                    <name>Temperatura SFP Gpon 1/5</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.21.1.1.1.14.8</snmp_oid>
+                    <key>pkSfpDiagTemperature_5</key>
+                    <delay>1800s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>746f18ea3cf944efb51d13c11eedbef0</uuid>
+                    <name>Temperatura SFP Gpon 1/6</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.21.1.1.1.14.9</snmp_oid>
+                    <key>pkSfpDiagTemperature_6</key>
+                    <delay>1800s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>6d44bdbf81f94695825b686880a98558</uuid>
+                    <name>Temperatura SFP Gpon 1/7</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.21.1.1.1.14.10</snmp_oid>
+                    <key>pkSfpDiagTemperature_7</key>
+                    <delay>1800s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3b6d1c8114294edeabe21d1ac3f5212a</uuid>
+                    <name>Temperatura SFP Gpon 1/8</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.1.21.1.1.1.14.11</snmp_oid>
+                    <key>pkSfpDiagTemperature_8</key>
+                    <delay>1800s</delay>
+                    <history>15d</history>
+                    <value_type>FLOAT</value_type>
+                    <units>ºC</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Temperature</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3e0d5cde71e64dbaa2cdfeedb704b9f5</uuid>
+                    <name>Device Firmware</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>.1.3.6.1.4.1.3893.2.1.2.1.4.1</snmp_oid>
+                    <key>sysFw</key>
+                    <delay>7200s</delay>
+                    <history>15d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>Software</value>
+                        </tag>
+                    </tags>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>OLT</tag>
+                    <value>Parks</value>
+                </tag>
+            </tags>
+            <dashboards>
+                <dashboard>
+                    <uuid>1236ec8cf9ff49caab6418814f7274c8</uuid>
+                    <name>OLT - Dados Interessantes</name>
+                    <pages>
+                        <page>
+                            <widgets>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <width>12</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>GRAPH</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                                                <name>Cpu</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <x>12</x>
+                                    <width>12</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>GRAPH</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                                                <name>Memory</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <y>5</y>
+                                    <width>12</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>GRAPH</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                                                <name>SFPs Gpon Temperature</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                                <widget>
+                                    <type>GRAPH_CLASSIC</type>
+                                    <x>12</x>
+                                    <y>5</y>
+                                    <width>12</width>
+                                    <height>5</height>
+                                    <fields>
+                                        <field>
+                                            <type>GRAPH</type>
+                                            <name>graphid</name>
+                                            <value>
+                                                <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                                                <name>Cabinet/Power Temperature</name>
+                                            </value>
+                                        </field>
+                                    </fields>
+                                </widget>
+                            </widgets>
+                        </page>
+                    </pages>
+                </dashboard>
+            </dashboards>
+            <valuemaps>
+                <valuemap>
+                    <uuid>6dfd19841f5a44009508b0dfa8318326</uuid>
+                    <name>Module Status</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Present</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Alerm</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Not Present</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <uuid>8fbe7e39509f406b9dcb4d766813db35</uuid>
+            <name>Cabinet/Power Temperature</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>EquipmentDataBoardStatus.0</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>EquipmentDataBoardStatus.1</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkintunitTemperature</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkintunitTemperature_2</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>FC6EA3</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkpwsuplyTemperature</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>ca86d5d834c34e52811f2300e6e5830f</uuid>
+            <name>Cpu</name>
+            <graph_items>
+                <graph_item>
+                    <drawtype>FILLED_REGION</drawtype>
+                    <color>F63100</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>CpuSystem</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>00FF00</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>CpuIdle</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>59b9c360983f4c7f8dd41b018aed6f05</uuid>
+            <name>Memory</name>
+            <graph_items>
+                <graph_item>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>3333FF</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>MemoryTotal</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>00EE00</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>MemoryFree</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>GRADIENT_LINE</drawtype>
+                    <color>FF0000</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>MemoryUsed</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <uuid>5d31b268a5f14a589138b17e743b7cc6</uuid>
+            <name>SFPs Gpon Temperature</name>
+            <graph_items>
+                <graph_item>
+                    <color>1A7C11</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkSfpDiagTemperature_1</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>F63100</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkSfpDiagTemperature_2</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>2774A4</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkSfpDiagTemperature_3</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>A54F10</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkSfpDiagTemperature_4</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>FC6EA3</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkSfpDiagTemperature_5</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <color>6C59DC</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkSfpDiagTemperature_6</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>6</sortorder>
+                    <color>AC8C14</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkSfpDiagTemperature_7</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>7</sortorder>
+                    <color>611F27</color>
+                    <item>
+                        <host>OLT Parks Fiberlink 30028 - 8 Portas</host>
+                        <key>pkSfpDiagTemperature_8</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>

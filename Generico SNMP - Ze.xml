@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <date>2023-03-20T19:16:19Z</date>
+    <groups>
+        <group>
+            <uuid>57b7ae836ca64446ba2c286389c009b7</uuid>
+            <name>Modelos ZABBIX</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>4cb1aabe2b704b5c881963c2ef87d8f6</uuid>
+            <template>Generico SNMP - Ze</template>
+            <name>Generico SNMP - Ze</name>
+            <description>##Modelo Traduzido e editado por José Felipe ##
+
+Modelo de Módulo Genérico
+
+MIBs usados:
+HOST-RESOURCES-MIB
+SNMPv2-MIB
+
+Versão da ferramenta de modelo usada: 0,41</description>
+            <groups>
+                <group>
+                    <name>Modelos ZABBIX</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>0db3c804c6174c018071e15cbc8c56ae</uuid>
+                    <name>ICMP ping</name>
+                    <type>SIMPLE</type>
+                    <key>icmpping</key>
+                    <history>1w</history>
+                    <valuemap>
+                        <name>Service state</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                        <tag>
+                            <tag>component</tag>
+                            <value>network</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>085d6f785f1e46faa447d6921036d01d</uuid>
+                            <expression>max(/Generico SNMP - Ze/icmpping,#3)=0</expression>
+                            <name>Indisponível para ICMP ping</name>
+                            <priority>HIGH</priority>
+                            <description>As últimas três tentativas retornaram o tempo limite. Verifique a conectividade do dispositivo.</description>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>availability</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>5d306c51188e496ba19b75b99e28cc7b</uuid>
+                    <name>ICMP loss</name>
+                    <type>SIMPLE</type>
+                    <key>icmppingloss</key>
+                    <history>1w</history>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                        <tag>
+                            <tag>component</tag>
+                            <value>network</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>d1bd868814ba4ace9b5034ac4e303259</uuid>
+                            <expression>min(/Generico SNMP - Ze/icmppingloss,5m)&gt;{$ICMP_LOSS_WARN} and min(/Generico SNMP - Ze/icmppingloss,5m)&lt;100</expression>
+                            <name>Alta perda de ping ICMP</name>
+                            <opdata>Loss: {ITEM.LASTVALUE1}</opdata>
+                            <priority>AVERAGE</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>Indisponível para ICMP ping</name>
+                                    <expression>max(/Generico SNMP - Ze/icmpping,#3)=0</expression>
+                                </dependency>
+                            </dependencies>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>availability</value>
+                                </tag>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>performance</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>9ad39c8c6ede46e6953aa6f9466eaf69</uuid>
+                    <name>ICMP tempo de resposta</name>
+                    <type>SIMPLE</type>
+                    <key>icmppingsec</key>
+                    <history>1w</history>
+                    <value_type>FLOAT</value_type>
+                    <units>s</units>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                        <tag>
+                            <tag>component</tag>
+                            <value>network</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>ecd74ec29b484a499414293bf671160b</uuid>
+                            <expression>avg(/Generico SNMP - Ze/icmppingsec,5m)&gt;{$ICMP_RESPONSE_TIME_WARN}</expression>
+                            <name>Tempo de resposta de ping ICMP alto</name>
+                            <opdata>Value: {ITEM.LASTVALUE1}</opdata>
+                            <priority>WARNING</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>Alta perda de ping ICMP</name>
+                                    <expression>min(/Generico SNMP - Ze/icmppingloss,5m)&gt;{$ICMP_LOSS_WARN} and min(/Generico SNMP - Ze/icmppingloss,5m)&lt;100</expression>
+                                </dependency>
+                                <dependency>
+                                    <name>Indisponível para ICMP ping</name>
+                                    <expression>max(/Generico SNMP - Ze/icmpping,#3)=0</expression>
+                                </dependency>
+                            </dependencies>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>availability</value>
+                                </tag>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>performance</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>2cda26906f254e13985cecdbb7901d1a</uuid>
+                    <name>Armadilhas SNMP (retrocesso)</name>
+                    <type>SNMP_TRAP</type>
+                    <key>snmptrap.fallback</key>
+                    <delay>0</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <value_type>LOG</value_type>
+                    <description>O item é usado para coletar todas as armadilhas SNMP inigualáveis por outros itens snmptrap</description>
+                    <logtimefmt>hh:mm:sszyyyy/MM/dd</logtimefmt>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>network</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>62da59c7aae54df7976f327119fe7cc2</uuid>
+                    <name>Detalhes de contato do sistema</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.4.0</snmp_oid>
+                    <key>system.contact[sysContact.0]</key>
+                    <delay>15m</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>MIB: SNMPv2-MIB
+A identificação textual da pessoa de contato para este nó gerenciado, junto com informações sobre como entrar em contato com esta pessoa. Se nenhuma informação de contato for conhecida, o valor é a string de comprimento zero.</description>
+                    <inventory_link>CONTACT</inventory_link>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>12h</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>29a3e5277de94386a5985fcf38a09364</uuid>
+                    <name>Descrição do Sistema</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.1.0</snmp_oid>
+                    <key>system.descr[sysDescr.0]</key>
+                    <delay>15m</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>MIB: SNMPv2-MIB
+Uma descrição textual da entidade. Este valor deve
+inclua o nome completo e a identificação da versão do tipo de hardware do sistema, sistema operacional do software e
+software de rede.</description>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>12h</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>b12afb0277494024b1638ce620c4f2d4</uuid>
+                    <name>Tempo de atividade (hardware)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.25.1.1.0</snmp_oid>
+                    <key>system.hw.uptime[hrSystemUptime.0]</key>
+                    <delay>30s</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <units>uptime</units>
+                    <description>MIB: HOST-RESOURCES-MIB
+A quantidade de tempo desde que este host foi inicializado pela última vez. Observe que isso é diferente de sysUpTime no SNMPv2-MIB [RFC1907] porque sysUpTime é o tempo de atividade da parte de gerenciamento de rede do sistema.</description>
+                    <preprocessing>
+                        <step>
+                            <type>CHECK_NOT_SUPPORTED</type>
+                            <parameters>
+                                <parameter/>
+                            </parameters>
+                            <error_handler>CUSTOM_VALUE</error_handler>
+                            <error_handler_params>0</error_handler_params>
+                        </step>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>02b453f44c014f2bb1054e801058b381</uuid>
+                    <name>Localização do sistema</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.6.0</snmp_oid>
+                    <key>system.location[sysLocation.0]</key>
+                    <delay>15m</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>MIB: SNMPv2-MIB
+A localização física deste nó (por exemplo, 'armário de telefone, 3º andar'). Se o local for desconhecido, o valor é a string de comprimento zero.</description>
+                    <inventory_link>LOCATION</inventory_link>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>12h</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3996a3a8d927473aa07c47e63a09b865</uuid>
+                    <name>Nome do sistema</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.5.0</snmp_oid>
+                    <key>system.name</key>
+                    <delay>15m</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>MIB: SNMPv2-MIB
+Um nome designado administrativamente para este nó gerenciado. Por convenção, este é o nome de domínio completo do nó. Se o nome for desconhecido, o valor é a string de comprimento zero.</description>
+                    <inventory_link>NAME</inventory_link>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>12h</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>072bf35ea9d04c559ada5cb13d4b6802</uuid>
+                            <expression>last(/Generico SNMP - Ze/system.name,#1)&lt;&gt;last(/Generico SNMP - Ze/system.name,#2) and length(last(/Generico SNMP - Ze/system.name))&gt;0</expression>
+                            <name>O nome do Host Mudou</name>
+                            <event_name>O nome do Host Mudou (Novo nome: {ITEM.VALUE})</event_name>
+                            <priority>INFO</priority>
+                            <description>System name has changed. Ack to close.</description>
+                            <manual_close>YES</manual_close>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>notice</value>
+                                </tag>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>security</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>000b97abddcd44bfb57e0eeb1b77f69e</uuid>
+                    <name>Tempo de atividade (rede)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.3.0</snmp_oid>
+                    <key>system.net.uptime[sysUpTime.0]</key>
+                    <delay>30s</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <units>uptime</units>
+                    <description>MIB: SNMPv2-MIB
+O tempo (em centésimos de segundo) desde a última reinicialização da parte de gerenciamento de rede do sistema.</description>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>9dbcc5a1cd7240c896e2ea718f9ccb35</uuid>
+                    <name>ID do objeto do sistema</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.2.1.1.2.0</snmp_oid>
+                    <key>system.objectid[sysObjectID.0]</key>
+                    <delay>15m</delay>
+                    <history>2w</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>MIB: SNMPv2-MIB
+A identificação oficial do fornecedor do subsistema de gerenciamento de rede contido na entidade. Este valor é alocado dentro da subárvore das empresas SMI (1.3.6.1.4.1) e fornece um meio fácil e inequívoco de determinar 'que tipo de caixa' está sendo gerenciada. Por exemplo, se o fornecedor `Flintstones, Inc.' foi atribuída a subárvore 1.3.6.1.4.1.4242, ela poderia atribuir o identificador 1.3.6.1.4.1.4242.1.1 ao seu `Fred Router'.</description>
+                    <preprocessing>
+                        <step>
+                            <type>DISCARD_UNCHANGED_HEARTBEAT</type>
+                            <parameters>
+                                <parameter>12h</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>system</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>3e8c2d440441416b9ccec7dd90e21503</uuid>
+                    <name>Disponibilidade do Agente SNMP</name>
+                    <type>INTERNAL</type>
+                    <key>zabbix[host,snmp,available]</key>
+                    <history>7d</history>
+                    <description>Disponibilidade de verificações SNMP no host. O valor deste item corresponde aos ícones de disponibilidade na lista de hosts.
+Valor possível:
+0 - não disponível
+1 disponível
+2 - desconhecido</description>
+                    <valuemap>
+                        <name>zabbix.host.available</name>
+                    </valuemap>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>health</value>
+                        </tag>
+                        <tag>
+                            <tag>component</tag>
+                            <value>network</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>d3aba975ec574b258c7f971152c5d4cd</uuid>
+                            <expression>max(/Generico SNMP - Ze/zabbix[host,snmp,available],{$SNMP.TIMEOUT})=0</expression>
+                            <name>Nenhuma coleta de dados SNMP</name>
+                            <opdata>Current state: {ITEM.LASTVALUE1}</opdata>
+                            <priority>WARNING</priority>
+                            <description>O SNMP não está disponível para polling. Verifique a conectividade do dispositivo e as configurações de SNMP.</description>
+                            <dependencies>
+                                <dependency>
+                                    <name>Indisponível para ICMP ping</name>
+                                    <expression>max(/Generico SNMP - Ze/icmpping,#3)=0</expression>
+                                </dependency>
+                            </dependencies>
+                            <tags>
+                                <tag>
+                                    <tag>scope</tag>
+                                    <value>availability</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$ICMP_LOSS_WARN}</macro>
+                    <value>20</value>
+                </macro>
+                <macro>
+                    <macro>{$ICMP_RESPONSE_TIME_WARN}</macro>
+                    <value>0.15</value>
+                </macro>
+                <macro>
+                    <macro>{$SNMP.TIMEOUT}</macro>
+                    <value>5m</value>
+                </macro>
+            </macros>
+            <valuemaps>
+                <valuemap>
+                    <uuid>1817725a41454fd3b9ad22feaf889fc5</uuid>
+                    <name>Service state</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>Down</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Up</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>ced60845a741400390ba002e69e26b0f</uuid>
+                    <name>zabbix.host.available</name>
+                    <mappings>
+                        <mapping>
+                            <value>0</value>
+                            <newvalue>not available</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>available</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>unknown</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <uuid>6f00359af55f45909bdecbad234c7654</uuid>
+            <expression>(last(/Generico SNMP - Ze/system.hw.uptime[hrSystemUptime.0])&gt;0 and last(/Generico SNMP - Ze/system.hw.uptime[hrSystemUptime.0])&lt;10m) or (last(/Generico SNMP - Ze/system.hw.uptime[hrSystemUptime.0])=0 and last(/Generico SNMP - Ze/system.net.uptime[sysUpTime.0])&lt;10m)</expression>
+            <name>O host foi reiniciado</name>
+            <event_name>{HOST.NAME} has been restarted (uptime &lt; 10m)</event_name>
+            <priority>AVERAGE</priority>
+            <description>O tempo de atividade é inferior a 10 minutos.</description>
+            <manual_close>YES</manual_close>
+            <dependencies>
+                <dependency>
+                    <name>Nenhuma coleta de dados SNMP</name>
+                    <expression>max(/Generico SNMP - Ze/zabbix[host,snmp,available],{$SNMP.TIMEOUT})=0</expression>
+                </dependency>
+            </dependencies>
+            <tags>
+                <tag>
+                    <tag>scope</tag>
+                    <value>notice</value>
+                </tag>
+            </tags>
+        </trigger>
+    </triggers>
+</zabbix_export>
